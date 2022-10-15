@@ -1,4 +1,5 @@
 import express from "express";
+import imagesRountes from "./api/images";
 
 /**
  * Get the router from express.
@@ -10,6 +11,9 @@ const routes = express.Router();
 routes.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+// Add the images reoute to the main router.
+routes.use("/images", imagesRountes);
 
 // export the routes object to be added as a midleware for the app object.
 export default routes;
