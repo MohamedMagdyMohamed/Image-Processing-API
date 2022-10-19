@@ -7,8 +7,8 @@
  */
 const validateImagesQueries = (
   filename: string | undefined,
-  width: number | undefined,
-  height: number | undefined
+  width: string | undefined,
+  height: string | undefined
 ): string | boolean => {
   if (filename == undefined) {
     return "Filename must be exists";

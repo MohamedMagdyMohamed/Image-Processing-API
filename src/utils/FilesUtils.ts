@@ -7,14 +7,52 @@ class FileUtils {
   private static imageThumbPath = path.resolve(__dirname, "../../assets/thumb");
 
   /**
+   * Return full image path for a specific filename at assests/full path
+   * @param filename filename in which the full path will be returned
+   * @returns full image path for a specific filename
+   */
+  static async getFullImageFilePath(filename: string): Promise<string> {
+    const files = await fsPromises.readdir(FileUtils.imageFullPath);
+    let file = "";
+    for (const f of files) {
+      if ((f.split(".")[0] as string) == filename) {
+        file = f;
+        break;
+      }
+    }
+    return path.resolve(FileUtils.imageFullPath, file);
+  }
+
+  /**
+   * Return full image path for a specific filename at assests/thumb path
+   * @param filename filename in which the full path will be returned
+   * @returns full image path for a specific filename
+   */
+  static async getThumbImageFilPath(filename: string): Promise<string> {
+    const files = await fsPromises.readdir(FileUtils.imageThumbPath);
+    let file = filename + ".jpg";
+    for (const f of files) {
+      if (f.split(".")[0] == filename) {
+        file = f;
+        break;
+      }
+    }
+    return path.resolve(FileUtils.imageThumbPath, file);
+  }
+
+  /**
    * check if the file exists in assets/full folder
    * @param filename filename to be checked if it exists in assets/full folder
    * @returns wether this file exists or not
    */
   static async isImageAvailableinFull(filename: string): Promise<boolean> {
     const files = await fsPromises.readdir(FileUtils.imageFullPath);
-    const file = files.map((filename) => filename.split(".")[0])[0];
-    return file == filename;
+    for (const f of files) {
+      if ((f.split(".")[0] as string) == filename) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -24,8 +62,12 @@ class FileUtils {
    */
   static async isImageAvailableinThumb(filename: string): Promise<boolean> {
     const files = await fsPromises.readdir(FileUtils.imageThumbPath);
-    const file = files.map((filename) => filename.split(".")[0])[0];
-    return file == filename;
+    for (const f of files) {
+      if ((f.split(".")[0] as string) == filename) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

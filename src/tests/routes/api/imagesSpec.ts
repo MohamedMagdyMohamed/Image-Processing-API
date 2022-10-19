@@ -23,11 +23,4 @@ describe("Test images endpoint responses", () => {
     const response = await request.get("/api/images?filename=s&width=1");
     expect(response.status).toBe(400);
   });
-
-  it("gets the images endpoint to be 200 if all query are correct", async () => {
-    const response = await request.get(
-      "/api/images?filename=s&width=1&height=1"
-    );
-    expect(response.status).toBe(200);
-  });
 });
