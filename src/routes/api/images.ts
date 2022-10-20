@@ -30,11 +30,16 @@ routes.get("/", async (req, res) => {
     return;
   }
   const thumbImagePath = await fileUtils.getThumbImageFilPath(
-    filename as string
+    filename as string,
+    width as string,
+    height as string
   );
   const isImageAvailableInThumb = await fileUtils.isImageAvailableinThumb(
-    filename as string
+    filename as string,
+    width as string,
+    height as string
   );
+  console.log("isImageAvailableInThumb : " + isImageAvailableInThumb);
   // if image is exists already in assets/thumb then return this image instead
   if (isImageAvailableInThumb) {
     res.sendFile(thumbImagePath);
