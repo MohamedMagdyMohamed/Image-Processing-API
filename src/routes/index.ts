@@ -8,7 +8,7 @@ import imagesRountes from "./api/images";
 const routes = express.Router();
 
 // Add a basic get request and send string to test the simple get request.
-routes.get("/", (req, res) => {
+routes.get("/", (req: express.Request, res: express.Response): void => {
   res.send("Hello World!");
 });
 

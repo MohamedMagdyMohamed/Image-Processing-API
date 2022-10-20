@@ -10,7 +10,7 @@ const port = 3000;
 app.use("/api", routes);
 
 // Listen to this port and set a console message when starting server to test the server connection.
-app.listen(port, () => {
+app.listen(port, (): void => {
   console.log(`Example app listening on port ${port}`);
 });
 
