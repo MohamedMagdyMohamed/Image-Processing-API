@@ -27,7 +27,8 @@ routes.get(
       return;
     }
     // if image is not exists in assests/full return error
-    if (!fileUtils.isImageAvailableinFull(filename as string)) {
+    const isImageAvailableinFull = await fileUtils.isImageAvailableinFull(filename as string)
+    if (!isImageAvailableinFull) {
       res.status(400).send("Image is not in the assets/full");
       return;
     }
