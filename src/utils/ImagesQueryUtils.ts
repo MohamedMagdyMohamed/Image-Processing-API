@@ -16,7 +16,7 @@ const validateImagesQueries = (
   if (width == undefined) {
     return "Width must be exists";
   }
-  const widthNumber = parseInt(width) as number;
+  const widthNumber: number = Number(width);
   if (isNaN(widthNumber)) {
     return "width must be a number";
   }
@@ -26,7 +26,7 @@ const validateImagesQueries = (
   if (height == undefined) {
     return "Height must be exists";
   }
-  const heightNumber = parseInt(height) as number;
+  const heightNumber: number = Number(height);
   if (isNaN(heightNumber)) {
     return "height must be a number";
   }
